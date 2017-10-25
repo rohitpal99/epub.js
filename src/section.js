@@ -3,6 +3,7 @@ import EpubCFI from "./epubcfi";
 import Hook from "./utils/hook";
 import { sprint } from "./utils/core";
 import { replaceBase } from "./utils/replacements";
+import { fromRange } from 'xpath-range';
 
 /**
  * Represents a Section of the Book
@@ -157,7 +158,9 @@ class Section {
 					// Add the CFI to the matches list
 					matches.push({
 						cfi: cfi,
-						excerpt: excerpt
+						excerpt: excerpt,
+						range: fromRange(range, section.document.body),
+						query: query
 					});
 				}
 
